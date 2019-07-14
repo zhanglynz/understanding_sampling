@@ -16,9 +16,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Preface {-}
 
-How do you learn, or to be exact, how do you learn complex stuff? I guess that many different answers will come up, because we are all different in many aspects, such as culture background, knowledge level, and learning style etc. etc.. For myself, if I want to seriously learn some complex stuff, then I will write about it. Without doubts, *Sampling* is complex, and it is kind of boring, but it is important (for me, because I need it for my work at Stats NZ, and for you the reasons must be different). So, I have to learn and re-learn sampling, and now I am writing about it.
+How do you learn, or to be exact, how do you learn complex stuff? I guess that many different answers will come up, because we are all different in many aspects, such as culture background, knowledge level, and learning style etc. etc.. For myself, if I want to seriously learn some complex stuff, then I will write about it. Without doubts, *Sampling* is complex, and it is kind of boring, but it is important (for me, because I need it for my work, and for you the reasons must be different). So, I have to learn and re-learn sampling, and now I am writing about it.
 
-Since I work for Stats NZ, I will use contexts and examples at there. Chapter 1 introduces preliminary concepts, such as *population*, *target population*, *survey populaton*, *simple random sample*, *stratified sample*, *cluster sample*, and *systematic sample*. Chapter 1 also presents the knowledge about New Zealand, which is required for sampling design at Stats NZ. Chapter 2 is about *sampling design*; Chapter 3 is about *weighting system*; Chapter 4 covers how to estimate *sampling errors*. Chapter 4 briefly introduces software for sampling.
+Since I live and work in New Zealand, I will use contexts and examples at there. Chapter 1 introduces preliminary concepts, such as *population*, *target population*, *survey populaton*, *simple random sample*, *stratified sample*, *cluster sample*, and *systematic sample*. Chapter 1 also presents the knowledge about New Zealand. Chapter 2 is about *sampling design*; Chapter 3 is about *weighting system*; Chapter 4 covers how to estimate *sampling errors*. Chapter 5 briefly introduces software for sampling.
 
 
 # Preliminary concepts and knowledge
@@ -30,8 +30,86 @@ Since I work for Stats NZ, I will use contexts and examples at there. Chapter 1 
 
 # Sampling design
 
+## Genearl ideas
+
+Throughout this chapter, *sampling design* means *probability sampling design*. Following (but not strictly) Till`r knitr::asis_output("\u00E9")` and Wilhelm (2017), the settings are as follows:
+
+- The *universe* is ${\cal U}=\{1, 2, \ldots, i, \ldots, N\}$.
+- A *sample* $S$ is a subset of ${\cal U}$. We restrict that $S$ cannot be empty.
+- There are $2^N-1$ possible samples. Let the set of all the possible samples be denoted by $\Omega$.
+
+A sampling design specifies a probability distribution $p(\cdot)$ over $\Omega$ such that
+$$
+p(S)\ge 0\ \hbox{and}\ \sum_{S\in \Omega} p(S)=1.
+$$
+
+Define 
+$$
+\pi_i = \hbox{the probability of selecting unit}\ i
+$$
+and for $i\neq j$
+$$
+\pi_{ij} = \hbox{the probability that both units}\ i\ \hbox{and}\ j\ \hbox{are selected in the sample.}
+$$
+Then,
+$$
+\pi_i = \sum_{i \in S}p(S)\ \hbox{and}\ \pi_{ij}=\sum_{\{i,\ j\}\subset S}p(S).
+$$
+
+Examples of sampling designs:
+
+- **simple random sampling:**
+$$
+p(S)=\left\{
+\begin{array}{ll}
+{N \choose n}^{-1}, & \hbox{if}\ S\in S_n,\\
+0, & \hbox{otherwise},
+\end{array}
+\right.
+$$
+where $S_n= \{S\in \Omega|\#S = n\}$. For this sampling design,
+$$
+\pi_i = \frac{n}{N}\ \hbox{and}\ \pi_{ij}= \frac{n(n-1)}{N(N-1)}.
+$$
+- **Strafied sampling:**
+$$
+p(S)=\left\{
+\begin{array}{ll}
+\prod_{h=1}^H{N_h \choose n_h}^{-1}, &\hbox{if}\ \#(S\bigcap {\cal U}_h)=n_h\ \hbox{for}\ h=1,\ldots, H,\\
+0, & \hbox{otherwise},
+\end{array}
+\right.
+$$
+where the universe ${\cal U}$ is partitioned into $H$ strata and $\# {\cal U}_h= N_h$ for $h=1, \ldots, H$; $n_h$ is the sample size for stratum ${\cal U}_h$. For this sampling design,
+$$
+\pi_i = \frac{n_h}{N_h},\ \hbox{if}\ i\in {\cal U}_h,
+$$
+and
+$$
+\pi_{ij}=\left\{
+\begin{array}{ll}
+\frac{n_h(n_h-1)}{N_h(N_h-1)}, & \hbox{if}\ i, j\in {\cal U}_h,\\
+\frac{n_gn_h}{N_gN_h}, &\hbox{if}\ i \in {\cal U}_g,\ j\in {\cal U}_h,\ g\neq h.
+\end{array}
+\right.
+$$
+
+
+
+
+
+
+
+
 # Weighting system
+
 
 # Sampling error
 
+
 # Software
+
+# References {-}
+
+**Till`r knitr::asis_output("\u00E9")`, Y. and Wilhelm, M.** (2017). Probability Sampling Design: Principles for Choice of Design and Balancing. *Statistical Science*, Vol. 32, pp. 176-189.
+

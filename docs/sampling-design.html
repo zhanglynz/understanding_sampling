@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2019-06-01">
+<meta name="date" content="2019-07-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -67,10 +67,13 @@
 <li class="chapter" data-level="1.1" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#concepts"><i class="fa fa-check"></i><b>1.1</b> Concepts</a></li>
 <li class="chapter" data-level="1.2" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#knowledge-about-nz"><i class="fa fa-check"></i><b>1.2</b> Knowledge about NZ</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="sampling-design.html"><a href="sampling-design.html"><i class="fa fa-check"></i><b>2</b> Sampling design</a></li>
+<li class="chapter" data-level="2" data-path="sampling-design.html"><a href="sampling-design.html"><i class="fa fa-check"></i><b>2</b> Sampling design</a><ul>
+<li class="chapter" data-level="2.1" data-path="sampling-design.html"><a href="sampling-design.html#genearl-ideas"><i class="fa fa-check"></i><b>2.1</b> Genearl ideas</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="weighting-system.html"><a href="weighting-system.html"><i class="fa fa-check"></i><b>3</b> Weighting system</a></li>
 <li class="chapter" data-level="4" data-path="sampling-error.html"><a href="sampling-error.html"><i class="fa fa-check"></i><b>4</b> Sampling error</a></li>
 <li class="chapter" data-level="5" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>5</b> Software</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
       </nav>
@@ -90,6 +93,55 @@
             <section class="normal" id="section-">
 <div id="sampling-design" class="section level1">
 <h1><span class="header-section-number">2</span> Sampling design</h1>
+<div id="genearl-ideas" class="section level2">
+<h2><span class="header-section-number">2.1</span> Genearl ideas</h2>
+<p>Throughout this chapter, <em>sampling design</em> means <em>probability sampling design</em>. Following (but not strictly) Tillé and Wilhelm (2017), the settings are as follows:</p>
+<ul>
+<li>The <em>universe</em> is <span class="math inline">\({\cal U}=\{1, 2, \ldots, i, \ldots, N\}\)</span>.</li>
+<li>A <em>sample</em> <span class="math inline">\(S\)</span> is a subset of <span class="math inline">\({\cal U}\)</span>. We restrict that <span class="math inline">\(S\)</span> cannot be empty.</li>
+<li>There are <span class="math inline">\(2^N-1\)</span> possible samples. Let the set of all the possible samples be denoted by <span class="math inline">\(\Omega\)</span>.</li>
+</ul>
+<p>A sampling design specifies a probability distribution <span class="math inline">\(p(\cdot)\)</span> over <span class="math inline">\(\Omega\)</span> such that <span class="math display">\[
+p(S)\ge 0\ \hbox{and}\ \sum_{S\in \Omega} p(S)=1.
+\]</span></p>
+<p>Define <span class="math display">\[
+\pi_i = \hbox{the probability of selecting unit}\ i
+\]</span> and for <span class="math inline">\(i\neq j\)</span> <span class="math display">\[
+\pi_{ij} = \hbox{the probability that both units}\ i\ \hbox{and}\ j\ \hbox{are selected in the sample.}
+\]</span> Then, <span class="math display">\[
+\pi_i = \sum_{i \in S}p(S)\ \hbox{and}\ \pi_{ij}=\sum_{\{i,\ j\}\subset S}p(S).
+\]</span></p>
+<p>Examples of sampling designs:</p>
+<ul>
+<li><strong>simple random sampling:</strong> <span class="math display">\[
+p(S)=\left\{
+\begin{array}{ll}
+{N \choose n}^{-1}, &amp; \hbox{if}\ S\in S_n,\\
+0, &amp; \hbox{otherwise},
+\end{array}
+\right.
+\]</span> where <span class="math inline">\(S_n= \{S\in \Omega|\#S = n\}\)</span>. For this sampling design, <span class="math display">\[
+\pi_i = \frac{n}{N}\ \hbox{and}\ \pi_{ij}= \frac{n(n-1)}{N(N-1)}.
+\]</span></li>
+<li><strong>Strafied sampling:</strong> <span class="math display">\[
+p(S)=\left\{
+\begin{array}{ll}
+\prod_{h=1}^H{N_h \choose n_h}^{-1}, &amp;\hbox{if}\ \#(S\bigcap {\cal U}_h)=n_h\ \hbox{for}\ h=1,\ldots, H,\\
+0, &amp; \hbox{otherwise},
+\end{array}
+\right.
+\]</span> where the universe <span class="math inline">\({\cal U}\)</span> is partitioned into <span class="math inline">\(H\)</span> strata and <span class="math inline">\(\# {\cal U}_h= N_h\)</span> for <span class="math inline">\(h=1, \ldots, H\)</span>; <span class="math inline">\(n_h\)</span> is the sample size for stratum <span class="math inline">\({\cal U}_h\)</span>. For this sampling design, <span class="math display">\[
+\pi_i = \frac{n_h}{N_h},\ \hbox{if}\ i\in {\cal U}_h,
+\]</span> and <span class="math display">\[
+\pi_{ij}=\left\{
+\begin{array}{ll}
+\frac{n_h(n_h-1)}{N_h(N_h-1)}, &amp; \hbox{if}\ i, j\in {\cal U}_h,\\
+\frac{n_gn_h}{N_gN_h}, &amp;\hbox{if}\ i \in {\cal U}_g,\ j\in {\cal U}_h,\ g\neq h.
+\end{array}
+\right.
+\]</span></li>
+</ul>
+</div>
 </div>
             </section>
 
@@ -138,6 +190,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
