@@ -30,7 +30,7 @@ Since I live and work in New Zealand, I will use contexts and examples at there.
 
 # Sampling design
 
-## Genearl ideas
+## General ideas
 
 Throughout this chapter, *sampling design* means *probability sampling design*. Following (but not strictly) Till`r knitr::asis_output("\u00E9")` and Wilhelm (2017), the settings are as follows:
 
