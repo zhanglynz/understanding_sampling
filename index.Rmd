@@ -94,6 +94,19 @@ $$
 \right.
 $$
 
+## Sampling design for TK
+
+**Target population:** the people who are
+
+- NZ usual residents living in private dwellings
+- aged 15 or above
+- Maori (ethnicity or descent)
+
+**Sampling frame:** it's formed by using the 2018 Census data (i.e. individual table and dwelling table)
+
+**Sampling scheme:** stratified two-stage sampling. In **Stage 1**, we take psus---SRS, and in **Stage 2**, we take individuals---SRS (also using stratification with age being the stratification variable). For each psu, we can know which *region* it belongs to, if it is *urban* or *rural*, if it has high/low Maori people, and based on the information we can partition all the psus into 50 strata (NB: this is after some necessary combination is done). 
+
+**Sample sizes:** a) how many psus to be taken in each stratum; b) how many individuals to be taken from the selected psus.
 
 
 
