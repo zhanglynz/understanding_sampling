@@ -94,7 +94,7 @@ $$
 \right.
 $$
 
-## Sampling design for TK
+## Sampling design for 2018 TK
 
 **Target population:** the people who are
 
@@ -104,17 +104,59 @@ $$
 
 **Sampling frame:** it's formed by using the 2018 Census data (i.e. individual table and dwelling table)
 
-**Sampling scheme:** stratified two-stage sampling. In **Stage 1**, we take psus---SRS, and in **Stage 2**, we take individuals---SRS (also using stratification with age being the stratification variable). For each psu, we can know which *region* it belongs to, if it is *urban* or *rural*, if it has high/low Maori people, and based on the information we can partition all the psus into 50 strata (NB: this is after some necessary combination is done). 
+**Sampling scheme:** stratified two-stage sampling. In **Stage 1**, we take psus---SRS, and in **Stage 2**, we take individuals---SRS (firstly using stratification with age being the stratification variable). For each psu, we can know which *region* it belongs to, if it is *urban* or *rural*, if it has *high*/*low* Maori people, and based on the information we can partition all the psus into 50 strata (NB: this is after some necessary combination is done). 
+
 
 **Sample sizes:** a) how many psus to be taken in each stratum; b) how many individuals to be taken from the selected psus.
 
+**Notation:**
 
+- $N:$ population size (or total number of ssus)
+- $H:$ total number of strata
+- $N_h:$ size of stratum $h$, for $h=1, 2,\ldots, H$
+- $n:$ sample size
+- $n_h:$ sample size of stratum $h$, for $h=1, 2,\ldots, H$
+- $M:$ number of psus
+- $M_h:$ number of psus in stratum $h$, for $h=1, 2,\ldots, H$ 
+- $m_h:$ number of psus to be taken from stratum $h$, for $h=1, 2,\ldots, H$
+- $n_{ih}:$ $n_h$ is split into $n_{1h}$, $n_{2h}$ and $n_3h$ in stage 2, where $i$ indicates age group.
 
+**Step 1:** $n\longrightarrow \{n_1, n_2, \ldots, n_H\}$, for example
+$$
+n_h = \text{ceiling}\left(\frac{nN_h}{\sum_{h=1}^H N_h}\right).
+$$
+
+**Step 2:** find $m_h$, for example
+$$
+m_h = \text{ceiling}\left(\frac{n_h}{\frac{N_h}{M_h}}\right).
+$$
+Note that $\frac{N_h}{M_h}$ is average size of psus in stratum $h$.
+
+**Step 3:** $n_h\longrightarrow \{n_{1h}, n_{2h}, n_{3h}\}$, for example
+$$
+n_{ih} = n_h\times f_i,
+$$
+where $f_i$ is *sampling fraction* for age group $i$ (e.g. $f_1=f_2=0.35,\ f_3=0.3$.)
 
 
 
 
 # Weighting system
+*
+The output files for weighting system should comprise the following
+
+- **weighting_system_main,** which is a table that contains
+columns `unit_ID`, `selection_wgt`, `adj_wgt_4_nonresponse` (optional), `final_wgt` and `jk_rep_wgt_1`, ..., `jk_rep_wgt_100`.
+- **benchmark tables** 
+
+## Selection weight
+
+Selection weights are provided at the sampling design stage. The formula is: For unit $i$, its
+$$
+\text{SelectionWgt}=\frac{1}{\text{inclusion probability of unit}\ i}.
+$$
+
+## Reweighting (or weighting adjustment)
 
 
 # Sampling error
