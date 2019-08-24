@@ -142,7 +142,7 @@ where $f_i$ is *sampling fraction* for age group $i$ (e.g. $f_1=f_2=0.35,\ f_3=0
 
 
 # Weighting system
-*
+
 The output files for weighting system should comprise the following
 
 - **weighting_system_main,** which is a table that contains
