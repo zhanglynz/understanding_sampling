@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="index.html">
+<link rel="next" href="toy-examples.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -99,23 +99,63 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Understanding Sampling</h1>
-<h4 class="author"><em>Lingyun Zhang</em></h4>
-<h4 class="date"><em>2019-10-11</em></h4>
+<div id="introduction" class="section level1 unnumbered">
+<h1>Introduction</h1>
+<p><em>Sampling</em> is all about getting/taking a <strong>sample</strong> from a <strong>population</strong>. It is clear that a sample is just a subset of a population. At the end of day, what we are concerned about are data—population and sample both are data and they can be represented as tables. So, for a population, we can use the following table to represent/show it.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Unit_ID</th>
+<th align="left"><span class="math inline">\(y_1\)</span></th>
+<th align="left"><span class="math inline">\(y_2\)</span></th>
+<th align="left"><span class="math inline">\(\cdots\)</span></th>
+<th align="left"><span class="math inline">\(y_m\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\vdots\)</span></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(N\)</span></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>The population shown in the above table has size <span class="math inline">\(N\)</span>, and we are interested in the <span class="math inline">\(m\)</span> <strong>unknown</strong> variables, <span class="math inline">\(y_1\, y_2,\ \ldots,\ y_m\)</span>. A part/portion of the above table is a sample. We make efforts to use the <strong>known</strong> sample (i.e. collected data) to get insights into the whole population—this is serious business.</p>
+<p>Sampling is challenging, because not only must we deal with mathematics but also we must cope with many practical issues, such as defining population, reducing cost (as much as we can), and non-response etc. etc.. Part I of this book is mathematics oriented, and Part II focuses on practical things in sampling.</p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>How do you learn, or to be exact, how do you learn complex stuff? I guess that many different answers will come out, because we are all different in many aspects, such as culture background, knowledge level, and learning style etc. etc.. For myself, if I want to seriously learn some complex stuff, then I will write about it. Without doubts, <em>Sampling</em> is complex, and it is kind of boring, but it is important (for me, because I need it for my work, and for you the reasons must be different). So, I have to learn and re-learn sampling, and now I am writing about it.</p>
-<p>Since I live and work in New Zealand, I will use contexts and examples at there. Chapter 1 introduces preliminary concepts, such as <em>population</em>, <em>target population</em>, <em>survey populaton</em>, <em>simple random sample</em>, <em>stratified sample</em>, <em>cluster sample</em>, and <em>systematic sample</em>. Chapter 1 also presents some knowledge about New Zealand. Chapter 2 is about <em>sampling design</em>; Chapter 3 is about <em>weighting system</em>; Chapter 4 covers how to estimate <em>sampling errors</em>. Chapter 5 briefly introduces software for sampling.</p>
-</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="toy-examples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
