@@ -24,14 +24,14 @@ Since I live and work in New Zealand, I will use contexts and examples at there.
 
 *Sampling* is all about getting/taking a **sample** from a **population**. It is clear that a sample is just a subset of a population. At the end of day, what we are concerned about are data---population and sample both are data and they can be represented as tables. So, for a population, we can use the following table to represent/show it.
 
- Unit_ID | $y_1$ | $y_2$ | $\cdots$ | $y_m$
+ Unit_ID | $Y_1$ | $Y_2$ | $\cdots$ | $Y_m$
 :---------|:-------|:-------|:----------|:-------
  1        |        |        |           |
  2        |        |        |           |
  $\vdots$ |        |        |           |
  $N$      |        |        |           |
 
-The population shown in the above table has size $N$, and we are interested in the $m$ **unknown** variables, $y_1\, y_2,\ \ldots,\ y_m$. A part/portion of the above table is a sample. We make efforts to use the **known** sample (i.e. collected data) to get insights into the whole population---this is serious business. 
+The population shown in the above table has size $N$, and we are interested in the $m$ **unknown** variables, $Y_1\, Y_2,\ \ldots,\ Y_m$. A part/portion of the above table is a sample. We make efforts to use the **known** sample (i.e. collected data) to get insights into the whole population---this is serious business. 
 
 Sampling is challenging, because not only must we deal with mathematics but also we must cope with many practical issues, such as defining population, reducing cost (as much as we can), and non-response etc. etc.. Part I of this book is mathematics oriented, and Part II focuses on practical things in sampling.
 
@@ -45,10 +45,14 @@ Sampling is challenging, because not only must we deal with mathematics but also
 a <- c(6, 8, 8, 1, 6, 4, 7, 5, 3, 3)
 index_m <- combn(1:10, 3)
 y_bar <- rep(0, 120)
-for(i in 1:120) y_bar[i] <- mean(a[index_m[, i]])
+s2 <- rep(0, 120)
+for(i in 1:120) 
+{y_bar[i] <- mean(a[index_m[, i]])
+ s2[i] <- var(a[index_m[, i]]) 
+}
 ```
 
-Unit_ID | $y$
+Unit_ID | $Y$
 :-------| :------
   1| 6
   2| 8
@@ -63,15 +67,22 @@ Unit_ID | $y$
 
 The population size $N=10$. Let us choose the sample size $n$ be $3$.
 
-- There are ${10 \choose 3}=120$ possible samples. In practice, we can only have one sample. So, there will always be **uncertainty** if we use one sample to infer the whole population.
+- There are ${10 \choose 3}=120$ possible samples. In practice, we can only have one sample, and there will always be **uncertainty** if we use one sample to infer the whole population.
 - The population mean $\bar{Y}=5.1$.
-- The distribution of all possible sample means is shown below.
+- The distribution of all possible sample means is shown below. The mean of the distribution is $5.1$, which is the same as the population mean $\bar{Y}$. So, sample mean is an *unbiased* estimator of the population mean. 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 hist(y_bar, freq = FALSE)
 ```
 
+- The population variance is
+$$
+S^2=\frac{\sum_{i=1}^N (Y_i - \bar{Y})^2}{N-1}=5.43
+$$
 
-
+- The distribution of all possible sample variances (NB: the divisor is $n-1$) is shown below.  
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+hist(s2, freq = FALSE)
+```
 
 # (PART) Practical part {-}
 

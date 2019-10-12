@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2019-10-11">
+<meta name="date" content="2019-10-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -106,7 +106,7 @@
 <thead>
 <tr class="header">
 <th align="left">Unit_ID</th>
-<th align="left"><span class="math inline">\(y\)</span></th>
+<th align="left"><span class="math inline">\(Y\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -154,9 +154,14 @@
 </table>
 <p>The population size <span class="math inline">\(N=10\)</span>. Let us choose the sample size <span class="math inline">\(n\)</span> be <span class="math inline">\(3\)</span>.</p>
 <ul>
-<li>There are <span class="math inline">\({10 \choose 3}=120\)</span> possible samples. In practice, we can only have one sample. So, there will always be <strong>uncertainty</strong> if we use one sample to infer the whole population.</li>
+<li>There are <span class="math inline">\({10 \choose 3}=120\)</span> possible samples. In practice, we can only have one sample, and there will always be <strong>uncertainty</strong> if we use one sample to infer the whole population.</li>
 <li>The population mean <span class="math inline">\(\bar{Y}=5.1\)</span>.</li>
-<li>The distribution of all possible sample means is shown below. <img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></li>
+<li><p>The distribution of all possible sample means is shown below. The mean of the distribution is <span class="math inline">\(5.1\)</span>, which is the same as the population mean <span class="math inline">\(\bar{Y}\)</span>. So, sample mean is an <em>unbiased</em> estimator of the population mean. <img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p></li>
+<li><p>The population variance is <span class="math display">\[
+S^2=\frac{\sum_{i=1}^N (Y_i - \bar{Y})^2}{N-1}=5.43
+\]</span></p></li>
+<li><p>The distribution of all possible sample variances (NB: the divisor is <span class="math inline">\(n-1\)</span>) is shown below.<br />
+<img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p></li>
 </ul>
 </div>
 
