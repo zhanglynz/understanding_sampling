@@ -25,15 +25,15 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2019-10-12">
+<meta name="date" content="2019-11-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="toy-examples.html">
-<link rel="next" href="sampling-design.html">
+<link rel="prev" href="sampling-design.html">
+<link rel="next" href="weighting-system.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -64,16 +64,16 @@
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="part"><span><b>I Mathematical part</b></span></li>
+<li class="part"><span><b>Part I: Mathematics</b></span></li>
 <li class="chapter" data-level="1" data-path="toy-examples.html"><a href="toy-examples.html"><i class="fa fa-check"></i><b>1</b> Toy Examples</a></li>
-<li class="part"><span><b>II Practical part</b></span></li>
-<li class="chapter" data-level="2" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html"><i class="fa fa-check"></i><b>2</b> Preliminary concepts and knowledge</a><ul>
-<li class="chapter" data-level="2.1" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#concepts"><i class="fa fa-check"></i><b>2.1</b> Concepts</a></li>
-<li class="chapter" data-level="2.2" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#knowledge-about-nz"><i class="fa fa-check"></i><b>2.2</b> Knowledge about NZ</a></li>
+<li class="chapter" data-level="2" data-path="sampling-design.html"><a href="sampling-design.html"><i class="fa fa-check"></i><b>2</b> Sampling design</a><ul>
+<li class="chapter" data-level="2.1" data-path="sampling-design.html"><a href="sampling-design.html#general-ideas"><i class="fa fa-check"></i><b>2.1</b> General ideas</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="sampling-design.html"><a href="sampling-design.html"><i class="fa fa-check"></i><b>3</b> Sampling design</a><ul>
-<li class="chapter" data-level="3.1" data-path="sampling-design.html"><a href="sampling-design.html#general-ideas"><i class="fa fa-check"></i><b>3.1</b> General ideas</a></li>
-<li class="chapter" data-level="3.2" data-path="sampling-design.html"><a href="sampling-design.html#sampling-design-for-2018-tk"><i class="fa fa-check"></i><b>3.2</b> Sampling design for 2018 TK</a></li>
+<li class="part"><span><b>Part II: Practice</b></span></li>
+<li class="chapter" data-level="3" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html"><i class="fa fa-check"></i><b>3</b> Preliminary concepts and knowledge</a><ul>
+<li class="chapter" data-level="3.1" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#concepts"><i class="fa fa-check"></i><b>3.1</b> Concepts</a></li>
+<li class="chapter" data-level="3.2" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#knowledge-about-nz"><i class="fa fa-check"></i><b>3.2</b> Knowledge about NZ</a></li>
+<li class="chapter" data-level="3.3" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#sampling-design-for-2018-tk"><i class="fa fa-check"></i><b>3.3</b> Sampling design for 2018 TK</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="weighting-system.html"><a href="weighting-system.html"><i class="fa fa-check"></i><b>4</b> Weighting system</a><ul>
 <li class="chapter" data-level="4.1" data-path="weighting-system.html"><a href="weighting-system.html#selection-weight"><i class="fa fa-check"></i><b>4.1</b> Selection weight</a></li>
@@ -100,12 +100,45 @@
 
             <section class="normal" id="section-">
 <div id="preliminary-concepts-and-knowledge" class="section level1">
-<h1><span class="header-section-number">2</span> Preliminary concepts and knowledge</h1>
+<h1><span class="header-section-number">3</span> Preliminary concepts and knowledge</h1>
 <div id="concepts" class="section level2">
-<h2><span class="header-section-number">2.1</span> Concepts</h2>
+<h2><span class="header-section-number">3.1</span> Concepts</h2>
 </div>
 <div id="knowledge-about-nz" class="section level2">
-<h2><span class="header-section-number">2.2</span> Knowledge about NZ</h2>
+<h2><span class="header-section-number">3.2</span> Knowledge about NZ</h2>
+</div>
+<div id="sampling-design-for-2018-tk" class="section level2">
+<h2><span class="header-section-number">3.3</span> Sampling design for 2018 TK</h2>
+<p><strong>Target population:</strong> the people who are</p>
+<ul>
+<li>NZ usual residents living in private dwellings</li>
+<li>aged 15 or above</li>
+<li>Maori (ethnicity or descent)</li>
+</ul>
+<p><strong>Sampling frame:</strong> it’s formed by using the 2018 Census data (i.e. individual table and dwelling table)</p>
+<p><strong>Sampling scheme:</strong> stratified two-stage sampling. In <strong>Stage 1</strong>, we take psus—SRS, and in <strong>Stage 2</strong>, we take individuals—SRS (firstly using stratification with age being the stratification variable). For each psu, we can know which <em>region</em> it belongs to, if it is <em>urban</em> or <em>rural</em>, if it has <em>high</em>/<em>low</em> Maori people, and based on the information we can partition all the psus into 50 strata (NB: this is after some necessary combination is done).</p>
+<p><strong>Sample sizes:</strong> a) how many psus to be taken in each stratum; b) how many individuals to be taken from the selected psus.</p>
+<p><strong>Notation:</strong></p>
+<ul>
+<li><span class="math inline">\(N:\)</span> population size (or total number of ssus)</li>
+<li><span class="math inline">\(H:\)</span> total number of strata</li>
+<li><span class="math inline">\(N_h:\)</span> size of stratum <span class="math inline">\(h\)</span>, for <span class="math inline">\(h=1, 2,\ldots, H\)</span></li>
+<li><span class="math inline">\(n:\)</span> sample size</li>
+<li><span class="math inline">\(n_h:\)</span> sample size of stratum <span class="math inline">\(h\)</span>, for <span class="math inline">\(h=1, 2,\ldots, H\)</span></li>
+<li><span class="math inline">\(M:\)</span> number of psus</li>
+<li><span class="math inline">\(M_h:\)</span> number of psus in stratum <span class="math inline">\(h\)</span>, for <span class="math inline">\(h=1, 2,\ldots, H\)</span></li>
+<li><span class="math inline">\(m_h:\)</span> number of psus to be taken from stratum <span class="math inline">\(h\)</span>, for <span class="math inline">\(h=1, 2,\ldots, H\)</span></li>
+<li><span class="math inline">\(n_{ih}:\)</span> <span class="math inline">\(n_h\)</span> is split into <span class="math inline">\(n_{1h}\)</span>, <span class="math inline">\(n_{2h}\)</span> and <span class="math inline">\(n_3h\)</span> in stage 2, where <span class="math inline">\(i\)</span> indicates age group.</li>
+</ul>
+<p><strong>Step 1:</strong> <span class="math inline">\(n\longrightarrow \{n_1, n_2, \ldots, n_H\}\)</span>, for example <span class="math display">\[
+n_h = \text{ceiling}\left(\frac{nN_h}{\sum_{h=1}^H N_h}\right).
+\]</span></p>
+<p><strong>Step 2:</strong> find <span class="math inline">\(m_h\)</span>, for example <span class="math display">\[
+m_h = \text{ceiling}\left(\frac{n_h}{\frac{N_h}{M_h}}\right).
+\]</span> Note that <span class="math inline">\(\frac{N_h}{M_h}\)</span> is average size of psus in stratum <span class="math inline">\(h\)</span>.</p>
+<p><strong>Step 3:</strong> <span class="math inline">\(n_h\longrightarrow \{n_{1h}, n_{2h}, n_{3h}\}\)</span>, for example <span class="math display">\[
+n_{ih} = n_h\times f_i,
+\]</span> where <span class="math inline">\(f_i\)</span> is <em>sampling fraction</em> for age group <span class="math inline">\(i\)</span> (e.g. <span class="math inline">\(f_1=f_2=0.35,\ f_3=0.3\)</span>.)</p>
 </div>
 </div>
             </section>
@@ -113,8 +146,8 @@
           </div>
         </div>
       </div>
-<a href="toy-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-design.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sampling-design.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="weighting-system.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
