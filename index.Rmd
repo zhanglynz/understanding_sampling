@@ -33,13 +33,15 @@ Since I live and work in New Zealand, I will use contexts and examples at there.
 
 The population shown in the above table has size $N$, and we are interested in the $m$ **unknown** variables, $Y_1\, Y_2,\ \ldots,\ Y_m$. A part/portion of the above table is a sample. We make efforts to use the **known** sample (i.e. collected data) to get insights into the whole population---this is serious business. 
 
-Sampling is challenging, because not only must we deal with mathematics but also we must cope with many practical issues, such as defining population, reducing cost (as much as we can), and non-response etc. etc.. Part I of this book is mathematics oriented, and Part II focuses on practical matters in sampling.
+Sampling is challenging, because not only must we deal with mathematics but also we must cope with many practical issues, such as defining population, reducing cost (as much as we can), and non-response etc. etc.. Part I of this book is about theory, and Part II focuses on practical matters in sampling.
 
-# (PART\*) Part I: Mathematics {-}
+# (PART\*) Part I: Theory {-}
 
 # Toy Examples
 
-**Example 1:** The population is shown as the following table.
+**Example 1:** **Simple Random Sampling**
+
+The population is shown as the following table.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 a <- c(6, 8, 8, 1, 6, 4, 7, 5, 3, 3)
@@ -150,6 +152,31 @@ $$
 \end{array}
 \right.
 $$
+
+## Proportional probability sampling 
+
+In a sampling design, an important part is *selection probabilities*, which accompany the items/individuals in the population. We can distinguish two cases. Case 1: all the selection probabilities are equal. Case 2: the selection probabilities are not equal. Simple random sampling is an example of Case 1; proportional probability sampling (PPS) is an example of Case 2.
+
+Under PPS, the selection probability of item/individual $i$ is defined as
+\begin{equation}
+\pi_i = n \frac{Z_i}{\sum_{i=1}^N Z_i},\ \text{for}\ i=1, \ldots, N,
+(\#eq:pi)
+\end{equation}
+where $n$ and $N$ are the sample size and population size, respectively, $Z_i$ is the *size/importance* of item/individual $i$.
+
+It is easy to see from \@ref(eq:pi) that
+\begin{equation}
+\sum_{i=1}^N \pi_i = n.
+(\#eq:pisum)
+\end{equation}
+Actually, \@ref(eq:pisum) is always hold regardless of sampling schemes; below is a quick proof.
+
+**Proof:** 
+\begin{align}
+\sum_{i=1}^N \pi_i&= \frac{Nn(n-1)!\binom{N-1}{n-1}}{n!\binom{N}{n}}\\
+&=n.
+\end{align}
+
 
 
 
