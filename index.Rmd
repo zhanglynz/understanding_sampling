@@ -172,10 +172,10 @@ It is easy to see from \@ref(eq:pi) that
 Actually, \@ref(eq:pisum) is always hold regardless of sampling schemes; below is a quick proof.
 
 **Proof:** 
-\begin{align}
-\sum_{i=1}^N \pi_i&= \frac{Nn(n-1)!\binom{N-1}{n-1}}{n!\binom{N}{n}}\\
-&=n.
-\end{align}
+$$
+\sum_{i=1}^N \pi_i= \frac{Nn(n-1)!\binom{N-1}{n-1}}{n!\binom{N}{n}}
+=n.
+$$
 
 
 
