@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2019-11-17">
+<meta name="date" content="2019-12-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <li class="chapter" data-level="1" data-path="toy-examples.html"><a href="toy-examples.html"><i class="fa fa-check"></i><b>1</b> Toy Examples</a></li>
 <li class="chapter" data-level="2" data-path="sampling-design.html"><a href="sampling-design.html"><i class="fa fa-check"></i><b>2</b> Sampling design</a><ul>
 <li class="chapter" data-level="2.1" data-path="sampling-design.html"><a href="sampling-design.html#general-ideas"><i class="fa fa-check"></i><b>2.1</b> General ideas</a></li>
-<li class="chapter" data-level="2.2" data-path="sampling-design.html"><a href="sampling-design.html#proportional-probability-sampling"><i class="fa fa-check"></i><b>2.2</b> Proportional probability sampling</a></li>
+<li class="chapter" data-level="2.2" data-path="sampling-design.html"><a href="sampling-design.html#probability-proportional-to-size-sampling"><i class="fa fa-check"></i><b>2.2</b> Probability proportional to size sampling</a></li>
 </ul></li>
 <li class="part"><span><b>Part II: Practice</b></span></li>
 <li class="chapter" data-level="3" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html"><i class="fa fa-check"></i><b>3</b> Preliminary concepts and knowledge</a><ul>
@@ -151,9 +151,9 @@ p(S)=\left\{
 \]</span></li>
 </ul>
 </div>
-<div id="proportional-probability-sampling" class="section level2">
-<h2><span class="header-section-number">2.2</span> Proportional probability sampling</h2>
-<p>In a sampling design, an important part is <em>selection probabilities</em>, which accompany the items/individuals in the population. We can distinguish two cases. Case 1: all the selection probabilities are equal. Case 2: the selection probabilities are not equal. Simple random sampling is an example of Case 1; proportional probability sampling (PPS) is an example of Case 2.</p>
+<div id="probability-proportional-to-size-sampling" class="section level2">
+<h2><span class="header-section-number">2.2</span> Probability proportional to size sampling</h2>
+<p>In a sampling design, an important part is <em>selection probabilities</em>, which accompany the items/individuals in the population. We can distinguish two cases. Case 1: all the selection probabilities are equal. Case 2: the selection probabilities are not equal. Simple random sampling is an example of Case 1; probability proportional to size (PPS) sampling is an example of Case 2.</p>
 Under PPS, the selection probability of item/individual <span class="math inline">\(i\)</span> is defined as
 <span class="math display" id="eq:pi">\[\begin{equation}
 \pi_i = n \frac{Z_i}{\sum_{i=1}^N Z_i},\ \text{for}\ i=1, \ldots, N,
@@ -167,7 +167,7 @@ It is easy to see from <a href="sampling-design.html#eq:pi">(2.1)</a> that
 \end{equation}\]</span>
 <p>Actually, <a href="sampling-design.html#eq:pisum">(2.2)</a> is always hold regardless of sampling schemes; below is a quick proof.</p>
 <p><strong>Proof:</strong> <span class="math display">\[
-\sum_{i=1}^N \pi_i= \frac{Nn(n-1)!\binom{N-1}{n-1}}{n!\binom{N}{n}}
+\sum_{i=1}^N \pi_i= \frac{N\binom{N-1}{n-1}}{\binom{N}{n}}\times 1
 =n.
 \]</span></p>
 </div>

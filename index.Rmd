@@ -74,7 +74,7 @@ The population size $N=10$. Let us choose the sample size $n$ be $3$.
 - The population mean $\bar{Y}=5.1$.
 - The distribution of all possible sample means is shown below. The mean of the distribution is $5.1$, which is the same as the population mean $\bar{Y}$. So, sample mean is an **unbiased** estimator of the population mean. 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
-hist(y_bar, freq = FALSE)
+hist(y_bar)
 ```
 
 - The population variance is
@@ -84,7 +84,7 @@ $$
 
 - The distribution of all possible sample variances (NB: the divisor is $n-1$) is shown below. The mean of the distribution is `r round(mean_of_s2, 2)`, which is the same as the population variance. So, under *simple random sampling*, sample variance is an **unbiased** estimator of the population variance.  
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
-hist(s2, freq = FALSE)
+hist(s2)
 ```
 
 # Sampling design
@@ -153,9 +153,9 @@ $$
 \right.
 $$
 
-## Proportional probability sampling 
+## Probability proportional to size sampling 
 
-In a sampling design, an important part is *selection probabilities*, which accompany the items/individuals in the population. We can distinguish two cases. Case 1: all the selection probabilities are equal. Case 2: the selection probabilities are not equal. Simple random sampling is an example of Case 1; proportional probability sampling (PPS) is an example of Case 2.
+In a sampling design, an important part is *selection probabilities*, which accompany the items/individuals in the population. We can distinguish two cases. Case 1: all the selection probabilities are equal. Case 2: the selection probabilities are not equal. Simple random sampling is an example of Case 1; probability proportional to size (PPS) sampling is an example of Case 2.
 
 Under PPS, the selection probability of item/individual $i$ is defined as
 \begin{equation}
@@ -173,7 +173,7 @@ Actually, \@ref(eq:pisum) is always hold regardless of sampling schemes; below i
 
 **Proof:** 
 $$
-\sum_{i=1}^N \pi_i= \frac{Nn(n-1)!\binom{N-1}{n-1}}{n!\binom{N}{n}}
+\sum_{i=1}^N \pi_i= \frac{N\binom{N-1}{n-1}}{\binom{N}{n}}\times 1
 =n.
 $$
 
