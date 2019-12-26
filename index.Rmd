@@ -45,10 +45,11 @@ The population is shown as the following table.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 a <- c(6, 8, 8, 1, 6, 4, 7, 5, 3, 3)
-index_m <- combn(1:10, 3)
-y_bar <- rep(0, 120)
-s2 <- rep(0, 120)
-for(i in 1:120) 
+index_m <- combn(1:10, 5)
+m <- dim(index_m)[2]
+y_bar <- rep(0, m)
+s2 <- rep(0, m)
+for(i in 1:m) 
 {y_bar[i] <- mean(a[index_m[, i]])
  s2[i] <- var(a[index_m[, i]]) 
 }
@@ -68,9 +69,9 @@ Unit_ID | $Y$
   9| 3
  10| 3
 
-The population size $N=10$. Let us choose the sample size $n$ be $3$.
+The population size $N=10$. Let us choose the sample size $n$ be $5$.
 
-- There are ${10 \choose 3}=120$ possible samples---here we are talking about *simple random samples* (SRS). In practice, we can only have one sample, and there will always be **uncertainty** if we use one sample to infer the whole population.
+- There are ${10 \choose 5}=252$ possible samples---here we are talking about *simple random samples* (SRS). In practice, we can only have one sample, and there will always be **uncertainty** if we use one sample to infer the whole population.
 - The population mean $\bar{Y}=5.1$.
 - The distribution of all possible sample means is shown below. The mean of the distribution is $5.1$, which is the same as the population mean $\bar{Y}$. So, sample mean is an **unbiased** estimator of the population mean. 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
@@ -86,6 +87,35 @@ $$
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 hist(s2)
 ```
+
+**Example 2:** **Systematic Sampling**
+
+We use the same population as in Example 1, and we take 100,000 systematic samples of size 5.
+
+```{r, warning=FALSE, message==FALSE, echo=TRUE}
+a <- c(6, 8, 8, 1, 6, 4, 7, 5, 3, 3)
+simu_run_nbr <- 100000
+
+my_sys_sample <- matrix(0, 5, simu_run_nbr)
+
+for(i in 1:simu_run_nbr)
+{my_sys_sample[, i] <- sample(a)[1:5]
+}
+
+the_sample_mean <- apply(my_sys_sample, 2, mean)
+
+hist(the_sample_mean, main = "Histogram of sample means", xlab = "y-bar")
+
+(mean(the_sample_mean))
+
+the_sample_var <- apply(my_sys_sample, 2, var)
+
+hist(the_sample_var, main = "Histogram of sample variances", xlab = "s2")
+
+(mean(the_sample_var))
+```
+
+
 
 # Sampling design
 

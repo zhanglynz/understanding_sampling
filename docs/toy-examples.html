@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2019-12-04">
+<meta name="date" content="2019-12-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,43 @@
 
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 </head>
 
@@ -154,9 +191,9 @@
 </tr>
 </tbody>
 </table>
-<p>The population size <span class="math inline">\(N=10\)</span>. Let us choose the sample size <span class="math inline">\(n\)</span> be <span class="math inline">\(3\)</span>.</p>
+<p>The population size <span class="math inline">\(N=10\)</span>. Let us choose the sample size <span class="math inline">\(n\)</span> be <span class="math inline">\(5\)</span>.</p>
 <ul>
-<li>There are <span class="math inline">\({10 \choose 3}=120\)</span> possible samples—here we are talking about <em>simple random samples</em> (SRS). In practice, we can only have one sample, and there will always be <strong>uncertainty</strong> if we use one sample to infer the whole population.</li>
+<li>There are <span class="math inline">\({10 \choose 5}=252\)</span> possible samples—here we are talking about <em>simple random samples</em> (SRS). In practice, we can only have one sample, and there will always be <strong>uncertainty</strong> if we use one sample to infer the whole population.</li>
 <li>The population mean <span class="math inline">\(\bar{Y}=5.1\)</span>.</li>
 <li><p>The distribution of all possible sample means is shown below. The mean of the distribution is <span class="math inline">\(5.1\)</span>, which is the same as the population mean <span class="math inline">\(\bar{Y}\)</span>. So, sample mean is an <strong>unbiased</strong> estimator of the population mean. <img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p></li>
 <li><p>The population variance is <span class="math display">\[
@@ -165,6 +202,29 @@ S^2=\frac{\sum_{i=1}^N (Y_i - \bar{Y})^2}{N-1}=5.43
 <li><p>The distribution of all possible sample variances (NB: the divisor is <span class="math inline">\(n-1\)</span>) is shown below. The mean of the distribution is 5.43, which is the same as the population variance. So, under <em>simple random sampling</em>, sample variance is an <strong>unbiased</strong> estimator of the population variance.<br />
 <img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p></li>
 </ul>
+<p><strong>Example 2:</strong> <strong>Systematic Sampling</strong></p>
+<p>We use the same population as in Example 1, and we take 100,000 systematic samples of size 5.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">3</span>)
+simu_run_nbr &lt;-<span class="st"> </span><span class="dv">100000</span>
+
+my_sys_sample &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dv">5</span>, simu_run_nbr)
+
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>simu_run_nbr)
+{my_sys_sample[, i] &lt;-<span class="st"> </span><span class="kw">sample</span>(a)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
+}
+
+the_sample_mean &lt;-<span class="st"> </span><span class="kw">apply</span>(my_sys_sample, <span class="dv">2</span>, mean)
+
+<span class="kw">hist</span>(the_sample_mean, <span class="dt">main =</span> <span class="st">&quot;Histogram of sample means&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;y-bar&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/message==FALSE-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="kw">mean</span>(the_sample_mean))</code></pre></div>
+<pre><code>## [1] 5.102048</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">the_sample_var &lt;-<span class="st"> </span><span class="kw">apply</span>(my_sys_sample, <span class="dv">2</span>, var)
+
+<span class="kw">hist</span>(the_sample_var, <span class="dt">main =</span> <span class="st">&quot;Histogram of sample variances&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;s2&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/message==FALSE-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="kw">mean</span>(the_sample_var))</code></pre></div>
+<pre><code>## [1] 5.429911</code></pre>
 </div>
             </section>
 
