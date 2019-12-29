@@ -1,5 +1,5 @@
 --- 
-title: "Understanding Sampling"
+title: "Understanding Survey Sampling"
 author: "Lingyun Zhang"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -90,7 +90,7 @@ hist(s2)
 
 **Example 2:** **Systematic Sampling**
 
-We use the same population as in Example 1, and we take 100,000 systematic samples of size 5.
+We use the same population as in Example 1, and we take 100,000 systematic samples of size 5. (NB: These samples are also simple random samples.)
 
 ```{r, warning=FALSE, message==FALSE, echo=TRUE}
 a <- c(6, 8, 8, 1, 6, 4, 7, 5, 3, 3)
@@ -199,7 +199,7 @@ It is easy to see from \@ref(eq:pi) that
 \sum_{i=1}^N \pi_i = n.
 (\#eq:pisum)
 \end{equation}
-Actually, \@ref(eq:pisum) is always hold regardless of sampling schemes; below is a quick proof.
+Actually, \@ref(eq:pisum) is always hold if the sample size is fixed as $n$; below is a quick proof.
 
 **Proof:** 
 $$
@@ -207,6 +207,44 @@ $$
 =n.
 $$
 
+## Three theoretical principles
+
+Till`r knitr::asis_output("\u00E9")` and Wilhelm (2017)
+introduce three theoretical principles for sampling design.
+
+- **Randomization:** a) make sure there are as many samples as possible, while meeting other constraints; b) select a sample at random.
+
+- **Overrepresentation:** unequal inclusion probabilities often result in more efficient estimates, or in other words, we should "preferentially select units where the dispersion is larger."
+
+- **Restriction:** avoid bad samples, e.g. using auxiliary information to make sure the estimates from a sample approximately equal the known totals. That is, "samples that either nonpractical or known to be inaccurate are avoided."
+
+We quote the following from Till`r knitr::asis_output("\u00E9")` and Wilhelm (2017).
+
+> "When auxiliary information is available, it is desired to include it in the sampling design in order to increase the precision of the estimates."
+>
+
+> "A balanced sample is such that the estimated totals of the auxiliary variables are approximately equal to the true totals."
+>
+
+# Weighting system
+
+The output files for weighting system should comprise the following
+
+- **weighting_system_main,** which is a table that contains
+columns `unit_ID`, `selection_wgt`, `adj_wgt_4_nonresponse` (optional), `final_wgt` and `jk_rep_wgt_1`, ..., `jk_rep_wgt_100`.
+- **benchmark tables** 
+
+## Selection weight
+
+Selection weights are provided at the sampling design stage. The formula is: For unit $i$, its
+$$
+\text{SelectionWgt}=\frac{1}{\text{inclusion probability of unit}\ i}.
+$$
+
+## Reweighting (or weighting adjustment)
+
+
+# Sampling error
 
 
 
@@ -267,26 +305,6 @@ where $f_i$ is *sampling fraction* for age group $i$ (e.g. $f_1=f_2=0.35,\ f_3=0
 
 
 
-
-# Weighting system
-
-The output files for weighting system should comprise the following
-
-- **weighting_system_main,** which is a table that contains
-columns `unit_ID`, `selection_wgt`, `adj_wgt_4_nonresponse` (optional), `final_wgt` and `jk_rep_wgt_1`, ..., `jk_rep_wgt_100`.
-- **benchmark tables** 
-
-## Selection weight
-
-Selection weights are provided at the sampling design stage. The formula is: For unit $i$, its
-$$
-\text{SelectionWgt}=\frac{1}{\text{inclusion probability of unit}\ i}.
-$$
-
-## Reweighting (or weighting adjustment)
-
-
-# Sampling error
 
 
 # Software
