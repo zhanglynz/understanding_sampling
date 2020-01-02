@@ -228,20 +228,63 @@ We quote the following from Till`r knitr::asis_output("\u00E9")` and Wilhelm (20
 
 # Weighting system
 
-The output files for weighting system should comprise the following
+The main reference for this chapter is Haziza and Beaumont (2017).
 
-- **weighting_system_main,** which is a table that contains
-columns `unit_ID`, `selection_wgt`, `adj_wgt_4_nonresponse` (optional), `final_wgt` and `jk_rep_wgt_1`, ..., `jk_rep_wgt_100`.
-- **benchmark tables** 
+## General ideas about weighting
 
-## Selection weight
+Since a sample is a part/portion of a population, each item/individual in the sample represents itself plus others in the population; that is, a weight $w_i$ should be attached to the item/individual $i$. It's obvious that 
 
-Selection weights are provided at the sampling design stage. The formula is: For unit $i$, its
+$$w_i>0$$
+or sometimes
 $$
-\text{SelectionWgt}=\frac{1}{\text{inclusion probability of unit}\ i}.
+w_i \ge 1.
 $$
 
-## Reweighting (or weighting adjustment)
+Weights are important because they are used in estimation of population parameters. Given the data, i.e. variable values and weights
+
+$y$ | weight
+:---:|:------:
+$y_1$ | $w_1$
+$y_2$ | $w_2$
+$\vdots$ | $\vdots$
+$y_n$ | $w_n$
+
+we have estimates of the total and mean 
+\begin{align}
+\hat{t} &= \sum_{i=1}^n w_i y_i,\\
+\hat{\bar{y}} &= \frac{\sum_{i=1}^n w_i y_i}{\sum_{i=1}^n w_i}.
+\end{align}
+In the literature, the estimator $\hat{t}$ is called the Horvitz-Thompson (HT) estimator.
+
+## The three stages in producing final weights
+
+- Stage 1: design weights
+$$
+d_i = \frac{1}{\pi_i},
+$$
+where $\pi_i$ is the selection/inclusion probability for item/individual $i$.
+
+- Stage 2: weights adjusted for non-response. We use $\tilde{d}_i$ to denote the adjusted weight for item/individual $i$.
+
+- Stage 3: final weights. We use $w_i$ to denote the final weight for item/individual $i$.
+
+## Calibration
+
+
+<!-- The output files for weighting system should comprise the following -->
+
+<!-- - **weighting_system_main,** which is a table that contains -->
+<!-- columns `unit_ID`, `selection_wgt`, `adj_wgt_4_nonresponse` (optional), `final_wgt` and `jk_rep_wgt_1`, ..., `jk_rep_wgt_100`. -->
+<!-- - **benchmark tables**  -->
+
+<!-- ## Selection weight -->
+
+<!-- Selection weights are provided at the sampling design stage. The formula is: For unit $i$, its -->
+<!-- $$ -->
+<!-- \text{SelectionWgt}=\frac{1}{\text{inclusion probability of unit}\ i}. -->
+<!-- $$ -->
+
+<!-- ## Reweighting (or weighting adjustment) -->
 
 
 # Sampling error
@@ -310,6 +353,8 @@ where $f_i$ is *sampling fraction* for age group $i$ (e.g. $f_1=f_2=0.35,\ f_3=0
 # Software
 
 # References {-}
+
+**Haziza, D. and Beaumont, J.** (2017). Construction of Weights in Surveys: A Review. *Statistical Science*, Vol. 32, pp. 206-226.
 
 **Till`r knitr::asis_output("\u00E9")`, Y. and Wilhelm, M.** (2017). Probability Sampling Design: Principles for Choice of Design and Balancing. *Statistical Science*, Vol. 32, pp. 176-189.
 

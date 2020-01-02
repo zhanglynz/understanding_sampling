@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2019-12-30">
+<meta name="date" content="2020-01-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -109,8 +109,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3" data-path="sampling-design.html"><a href="sampling-design.html#three-theoretical-principles"><i class="fa fa-check"></i><b>2.3</b> Three theoretical principles</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="weighting-system.html"><a href="weighting-system.html"><i class="fa fa-check"></i><b>3</b> Weighting system</a><ul>
-<li class="chapter" data-level="3.1" data-path="weighting-system.html"><a href="weighting-system.html#selection-weight"><i class="fa fa-check"></i><b>3.1</b> Selection weight</a></li>
-<li class="chapter" data-level="3.2" data-path="weighting-system.html"><a href="weighting-system.html#reweighting-or-weighting-adjustment"><i class="fa fa-check"></i><b>3.2</b> Reweighting (or weighting adjustment)</a></li>
+<li class="chapter" data-level="3.1" data-path="weighting-system.html"><a href="weighting-system.html#general-ideas-about-weighting"><i class="fa fa-check"></i><b>3.1</b> General ideas about weighting</a></li>
+<li class="chapter" data-level="3.2" data-path="weighting-system.html"><a href="weighting-system.html#the-three-stages-in-producing-final-weights"><i class="fa fa-check"></i><b>3.2</b> The three stages in producing final weights</a></li>
+<li class="chapter" data-level="3.3" data-path="weighting-system.html"><a href="weighting-system.html#calibration"><i class="fa fa-check"></i><b>3.3</b> Calibration</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="sampling-error.html"><a href="sampling-error.html"><i class="fa fa-check"></i><b>4</b> Sampling error</a></li>
 <li class="part"><span><b>Part II: Practice</b></span></li>
@@ -140,19 +141,69 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="weighting-system" class="section level1">
 <h1><span class="header-section-number">3</span> Weighting system</h1>
-<p>The output files for weighting system should comprise the following</p>
-<ul>
-<li><strong>weighting_system_main,</strong> which is a table that contains columns <code>unit_ID</code>, <code>selection_wgt</code>, <code>adj_wgt_4_nonresponse</code> (optional), <code>final_wgt</code> and <code>jk_rep_wgt_1</code>, …, <code>jk_rep_wgt_100</code>.</li>
-<li><strong>benchmark tables</strong></li>
-</ul>
-<div id="selection-weight" class="section level2">
-<h2><span class="header-section-number">3.1</span> Selection weight</h2>
-<p>Selection weights are provided at the sampling design stage. The formula is: For unit <span class="math inline">\(i\)</span>, its <span class="math display">\[
-\text{SelectionWgt}=\frac{1}{\text{inclusion probability of unit}\ i}.
+<p>The main reference for this chapter is Haziza and Beaumont (2017).</p>
+<div id="general-ideas-about-weighting" class="section level2">
+<h2><span class="header-section-number">3.1</span> General ideas about weighting</h2>
+<p>Since a sample is a part/portion of a population, each item/individual in the sample represents itself plus others in the population; that is, a weight <span class="math inline">\(w_i\)</span> should be attached to the item/individual <span class="math inline">\(i\)</span>. It’s obvious that</p>
+<p><span class="math display">\[w_i&gt;0\]</span> or sometimes <span class="math display">\[
+w_i \ge 1.
 \]</span></p>
+<p>Weights are important because they are used in estimation of population parameters. Given the data, i.e. variable values and weights</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(y\)</span></th>
+<th align="center">weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(y_1\)</span></td>
+<td align="center"><span class="math inline">\(w_1\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(y_2\)</span></td>
+<td align="center"><span class="math inline">\(w_2\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(y_n\)</span></td>
+<td align="center"><span class="math inline">\(w_n\)</span></td>
+</tr>
+</tbody>
+</table>
+we have estimates of the total and mean
+<span class="math display">\[\begin{align}
+\hat{t} &amp;= \sum_{i=1}^n w_i y_i,\\
+\hat{\bar{y}} &amp;= \frac{\sum_{i=1}^n w_i y_i}{\sum_{i=1}^n w_i}.
+\end{align}\]</span>
+<p>In the literature, the estimator <span class="math inline">\(\hat{t}\)</span> is called the Horvitz-Thompson (HT) estimator.</p>
 </div>
-<div id="reweighting-or-weighting-adjustment" class="section level2">
-<h2><span class="header-section-number">3.2</span> Reweighting (or weighting adjustment)</h2>
+<div id="the-three-stages-in-producing-final-weights" class="section level2">
+<h2><span class="header-section-number">3.2</span> The three stages in producing final weights</h2>
+<ul>
+<li><p>Stage 1: design weights <span class="math display">\[
+d_i = \frac{1}{\pi_i},
+\]</span> where <span class="math inline">\(\pi_i\)</span> is the selection/inclusion probability for item/individual <span class="math inline">\(i\)</span>.</p></li>
+<li><p>Stage 2: weights adjusted for non-response. We use <span class="math inline">\(\tilde{d}_i\)</span> to denote the adjusted weight for item/individual <span class="math inline">\(i\)</span>.</p></li>
+<li><p>Stage 3: final weights. We use <span class="math inline">\(w_i\)</span> to denote the final weight for item/individual <span class="math inline">\(i\)</span>.</p></li>
+</ul>
+</div>
+<div id="calibration" class="section level2">
+<h2><span class="header-section-number">3.3</span> Calibration</h2>
+<!-- The output files for weighting system should comprise the following -->
+<!-- - **weighting_system_main,** which is a table that contains -->
+<!-- columns `unit_ID`, `selection_wgt`, `adj_wgt_4_nonresponse` (optional), `final_wgt` and `jk_rep_wgt_1`, ..., `jk_rep_wgt_100`. -->
+<!-- - **benchmark tables**  -->
+<!-- ## Selection weight -->
+<!-- Selection weights are provided at the sampling design stage. The formula is: For unit $i$, its -->
+<!-- $$ -->
+<!-- \text{SelectionWgt}=\frac{1}{\text{inclusion probability of unit}\ i}. -->
+<!-- $$ -->
+<!-- ## Reweighting (or weighting adjustment) -->
 </div>
 </div>
             </section>
