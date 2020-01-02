@@ -270,6 +270,63 @@ where $\pi_i$ is the selection/inclusion probability for item/individual $i$.
 
 ## Calibration
 
+**Notation**
+
+- We denote a population by $U$.
+- A sample is denoted by $S$.
+- Design weights: $\{d_k,\ k\in S\}$.
+- Final weights: $\{w_k,\ k \in S\}$.
+
+**What does calibration mean?**
+
+Roughly speaking, calibration is to adjust from the design weights $\{d_i\}$ to final weights $\{w_i\}$ such that
+
+a. $\{w_i\}$ are as close to $\{d_i\}$ as possible;
+b. $\{w_i\}$ satisfy calibration constraints.
+
+We will explain the exact meanings of a. and b. shortly.
+
+**Why do we do calibration?**
+ 
+According to Haziza and Beaumont (2017):
+
+> The reasons for using calibration are three-fold:
+
+> (i) to force consistency of certain survey estimates to known population quantities;  
+
+> (ii) to reduce nonsampling errors such as nonresponse errors and coverage errors;
+
+> (iii) to improve the precision of estimates.
+>
+
+**How do we do calibration?**
+
+It's clear that calibration is an optimization problem, where the *decision variables* are $\{w_i\}$. The *objective function* is 
+$$
+\sum_{k\in S} d_k\frac{G(w_k/d_k)}{q_k},
+$$
+where $G(\cdot)$ is referred as a *distance function*---it measures the distance between $\{w_i\}$ and $\{d_i\}$, "$q_k$ is a scale factor indicating the importance of unit $k$ in the distance calculation. In most practical situations $q_k$ is set to 1."
+
+The constraints are
+$$
+\sum_{k \in S} w_k \mathbf x_k = \mathbf t_{\mathbf x},
+$$
+where 
+$$
+\mathbf x_k = (x_{1k}, \ldots, x_{Jk}),
+$$
+and 
+$$
+\mathbf t_{\mathbf x}=(t_{x_1}, \ldots, t_{x_J}),
+$$
+with
+$$
+t_{x_j}=\sum_{k \in U} x_{jk}.
+$$
+
+**Commonly used distance functions**
+
+**Examples**
 
 <!-- The output files for weighting system should comprise the following -->
 

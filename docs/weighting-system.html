@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2020-01-02">
+<meta name="date" content="2020-01-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -194,6 +194,55 @@ d_i = \frac{1}{\pi_i},
 </div>
 <div id="calibration" class="section level2">
 <h2><span class="header-section-number">3.3</span> Calibration</h2>
+<p><strong>Notation</strong></p>
+<ul>
+<li>We denote a population by <span class="math inline">\(U\)</span>.</li>
+<li>A sample is denoted by <span class="math inline">\(S\)</span>.</li>
+<li>Design weights: <span class="math inline">\(\{d_k,\ k\in S\}\)</span>.</li>
+<li>Final weights: <span class="math inline">\(\{w_k,\ k \in S\}\)</span>.</li>
+</ul>
+<p><strong>What does calibration mean?</strong></p>
+<p>Roughly speaking, calibration is to adjust from the design weights <span class="math inline">\(\{d_i\}\)</span> to final weights <span class="math inline">\(\{w_i\}\)</span> such that</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\{w_i\}\)</span> are as close to <span class="math inline">\(\{d_i\}\)</span> as possible;</li>
+<li><span class="math inline">\(\{w_i\}\)</span> satisfy calibration constraints.</li>
+</ol>
+<p>We will explain the exact meanings of a. and b. shortly.</p>
+<p><strong>Why do we do calibration?</strong></p>
+<p>According to Haziza and Beaumont (2017):</p>
+<blockquote>
+<p>The reasons for using calibration are three-fold:</p>
+</blockquote>
+<blockquote>
+<ol style="list-style-type: lower-roman">
+<li>to force consistency of certain survey estimates to known population quantities;</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2" style="list-style-type: lower-roman">
+<li>to reduce nonsampling errors such as nonresponse errors and coverage errors;</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3" style="list-style-type: lower-roman">
+<li>to improve the precision of estimates.</li>
+</ol>
+</blockquote>
+<p><strong>How do we do calibration?</strong></p>
+<p>It’s clear that calibration is an optimization problem, where the <em>decision variables</em> are <span class="math inline">\(\{w_i\}\)</span>. The <em>objective function</em> is <span class="math display">\[
+\sum_{k\in S} d_k\frac{G(w_k/d_k)}{q_k},
+\]</span> where <span class="math inline">\(G(\cdot)\)</span> is referred as a <em>distance function</em>—it measures the distance between <span class="math inline">\(\{w_i\}\)</span> and <span class="math inline">\(\{d_i\}\)</span>, “<span class="math inline">\(q_k\)</span> is a scale factor indicating the importance of unit <span class="math inline">\(k\)</span> in the distance calculation. In most practical situations <span class="math inline">\(q_k\)</span> is set to 1.”</p>
+<p>The constraints are <span class="math display">\[
+\sum_{k \in S} w_k \mathbf x_k = \mathbf t_{\mathbf x},
+\]</span> where <span class="math display">\[
+\mathbf x_k = (x_{1k}, \ldots, x_{Jk}),
+\]</span> and <span class="math display">\[
+\mathbf t_{\mathbf x}=(t_{x_1}, \ldots, t_{x_J}),
+\]</span> with <span class="math display">\[
+t_{x_j}=\sum_{k \in U} x_{jk}.
+\]</span></p>
+<p><strong>Commonly used distance functions</strong></p>
+<p><strong>Examples</strong></p>
 <!-- The output files for weighting system should comprise the following -->
 <!-- - **weighting_system_main,** which is a table that contains -->
 <!-- columns `unit_ID`, `selection_wgt`, `adj_wgt_4_nonresponse` (optional), `final_wgt` and `jk_rep_wgt_1`, ..., `jk_rep_wgt_100`. -->
