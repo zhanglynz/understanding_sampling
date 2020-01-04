@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2020-01-03">
+<meta name="date" content="2020-01-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -231,7 +231,7 @@ d_i = \frac{1}{\pi_i},
 <p><strong>How do we do calibration?</strong></p>
 <p>It’s clear that calibration is an optimization problem, where the <em>decision variables</em> are <span class="math inline">\(\{w_i\}\)</span>. The <em>objective function</em> is <span class="math display">\[
 \sum_{k\in S} d_k\frac{G(w_k/d_k)}{q_k},
-\]</span> where <span class="math inline">\(G(\cdot)\)</span> is referred as a <em>distance function</em>—it measures the distance between <span class="math inline">\(\{w_i\}\)</span> and <span class="math inline">\(\{d_i\}\)</span>, “<span class="math inline">\(q_k\)</span> is a scale factor indicating the importance of unit <span class="math inline">\(k\)</span> in the distance calculation. In most practical situations <span class="math inline">\(q_k\)</span> is set to 1.”</p>
+\]</span> where <span class="math inline">\(G(\cdot)\)</span> is referred as a <em>distance function</em>—it measures the distance between <span class="math inline">\(\{w_i\}\)</span> and <span class="math inline">\(\{d_i\}\)</span>, “<span class="math inline">\(q_k\)</span> is a scale factor indicating the importance of unit <span class="math inline">\(k\)</span> in the distance calculation. In most practical situations <span class="math inline">\(q_k\)</span> is set to 1.” We assume that: a) <span class="math inline">\(G(w_k/d_k)\ge 0\)</span>; b) <span class="math inline">\(G(1)=0\)</span>; c) <span class="math inline">\(G(\cdot)\)</span> is differentiable; d) <span class="math inline">\(G(\cdot)\)</span> is strictly convex (i.e. the second derivative of <span class="math inline">\(G\)</span> is positive.)</p>
 <p>The constraints are <span class="math display">\[
 \sum_{k \in S} w_k \mathbf x_k = \mathbf t_{\mathbf x},
 \]</span> where <span class="math display">\[
@@ -241,8 +241,31 @@ d_i = \frac{1}{\pi_i},
 \]</span> with <span class="math display">\[
 t_{x_j}=\sum_{k \in U} x_{jk}.
 \]</span></p>
+<strong>Example 1</strong> Suppose that the population size <span class="math inline">\(N\)</span> is known. Setting <span class="math display">\[
+x_k =1\ \hbox{and}\ q_k=q\ \hbox{for}\ k\in S,
+\]</span> we want to minimize <span class="math display">\[
+f(w_k;\ k\in S)=\sum_{k \in S}d_k G(w_k/d_k),
+\]</span> subject to <span class="math display">\[
+\sum_{k \in S}w_k= N.
+\]</span> It’s easy to derive that <span class="math display">\[
+w_k = N\frac{d_k}{\sum_{i \in S} d_i}.
+\]</span> In this case, the calibrated total estimator is
+<span class="math display">\[\begin{align}
+\hat{t}_{y,\ C} &amp; = \sum_{k \in S}w_k y_k\\
+&amp;= \sum_{k \in S} N \frac{d_k}{\sum_{i \in S} d_i} y_k\\
+&amp;= N\frac{\hat{t}_{y,\ \pi}}{\hat{N}_{\pi}}.
+\end{align}\]</span>
+<p><strong>Example 2</strong> Suppose <span class="math inline">\(x_k\)</span> is available for all <span class="math inline">\(k \in S\)</span> and it’s known that <span class="math inline">\(\sum_{k \in U} x_k= t_x\)</span>. Setting <span class="math inline">\(q_k=x_k^{-1}\)</span>, we want to minimize <span class="math display">\[
+f(w_k;\ k\in S)=\sum_{k\in S}d_k G(w_k/d_k) x_k,
+\]</span> subject to <span class="math display">\[
+\sum_{k\in S}w_k x_k=t_x.
+\]</span> We can derive that <span class="math display">\[
+w_k = d_k\frac{t_x}{\sum_{k \in S}d_k x_k}=d_k\frac{t_x}{\hat{t}_{x,\ \pi}}.
+\]</span> In this case, the calibrated total estimator is <span class="math display">\[
+\hat{t}_{y,\ C}=\frac{\hat{t}_{y,\ \pi}}{\hat{t}_{x,\pi }}t_x,
+\]</span> which is the so-called <em>ratio estimator</em>.</p>
+<p><strong>Example 3</strong></p>
 <p><strong>Commonly used distance functions</strong></p>
-<p><strong>Examples</strong></p>
 <!-- The output files for weighting system should comprise the following -->
 <!-- - **weighting_system_main,** which is a table that contains -->
 <!-- columns `unit_ID`, `selection_wgt`, `adj_wgt_4_nonresponse` (optional), `final_wgt` and `jk_rep_wgt_1`, ..., `jk_rep_wgt_100`. -->
