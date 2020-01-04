@@ -264,7 +264,27 @@ w_k = d_k\frac{t_x}{\sum_{k \in S}d_k x_k}=d_k\frac{t_x}{\hat{t}_{x,\ \pi}}.
 \]</span> In this case, the calibrated total estimator is <span class="math display">\[
 \hat{t}_{y,\ C}=\frac{\hat{t}_{y,\ \pi}}{\hat{t}_{x,\pi }}t_x,
 \]</span> which is the so-called <em>ratio estimator</em>.</p>
-<p><strong>Example 3</strong></p>
+<strong>Example 3</strong> Let <span class="math inline">\(N_M\)</span> and <span class="math inline">\(N_F\)</span> denote the numbers of males and females, respectively, in the population. Assume that <span class="math inline">\(N_M\)</span> and <span class="math inline">\(N_F\)</span> are known. Divide <span class="math inline">\(S\)</span> into <span class="math inline">\(M\)</span> and <span class="math inline">\(F\)</span>, where <span class="math inline">\(M\)</span> is the set of males and <span class="math inline">\(F\)</span> is the set of females. We want to minimize <span class="math display">\[
+f(w_k; k\in S) = \sum_{k \in M}d_k G(w_k/d_k)q_M + \sum_{k \in F}d_k G(w_k/d_k)q_F,
+\]</span> subject to <span class="math display">\[
+\sum_{k \in M}w_k= N_M\ \hbox{and}\ \sum_{k \in F}w_k=N_F.
+\]</span> It’s easy to show that <span class="math display">\[
+w_k = \left\{
+\begin{array}{cl}
+d_k\frac{N_M}{\sum_{k \in M}d_k}, &amp; \hbox{if}\ k\in M\\
+d_k\frac{N_F}{\sum_{k \in F}d_k}, &amp; \hbox{if}\ k\in F.
+\end{array}
+\right.
+\]</span> In this case, the calibrated total estimator is <span class="math display">\[
+\hat{t}_{y,\ c}=\frac{N_M}{\hat{N}_{M,\ \pi}}\hat{t}_{My,\ \pi} + \frac{N_F}{\hat{N}_{F,\ \pi}}\hat{t}_{Fy,\ \pi},
+\]</span> where
+<span class="math display">\[\begin{align}
+\hat{N}_{M,\ \pi}&amp;=\sum_{k\in M} d_k,\\
+\hat{N}_{F,\ \pi}&amp;=\sum_{k\in F} d_k,\\
+\hat{t}_{My,\ \pi}&amp;=\sum_{k \in M}d_k y_k,\\
+\hat{t}_{Fy,\ \pi}&amp;=\sum_{k \in F}d_k y_k.
+\end{align}\]</span>
+<p>Notice that here we are talking about the so-called <em>post-stratified estimator</em>.</p>
 <p><strong>Commonly used distance functions</strong></p>
 <!-- The output files for weighting system should comprise the following -->
 <!-- - **weighting_system_main,** which is a table that contains -->

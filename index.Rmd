@@ -365,7 +365,35 @@ $$
 $$
 which is the so-called *ratio estimator*.
 
-**Example 3**
+**Example 3** Let $N_M$ and $N_F$ denote the numbers of males and females, respectively, in the population. Assume that $N_M$ and $N_F$ are known. Divide $S$ into $M$ and $F$, where $M$ is the set of males and $F$ is the set of females. We want to minimize
+$$
+f(w_k; k\in S) = \sum_{k \in M}d_k G(w_k/d_k)q_M + \sum_{k \in F}d_k G(w_k/d_k)q_F,
+$$
+subject to
+$$
+\sum_{k \in M}w_k= N_M\ \hbox{and}\ \sum_{k \in F}w_k=N_F.
+$$
+It's easy to show that
+$$
+w_k = \left\{
+\begin{array}{cl}
+d_k\frac{N_M}{\sum_{k \in M}d_k}, & \hbox{if}\ k\in M\\
+d_k\frac{N_F}{\sum_{k \in F}d_k}, & \hbox{if}\ k\in F.
+\end{array}
+\right.
+$$
+In this case, the calibrated total estimator is
+$$
+\hat{t}_{y,\ c}=\frac{N_M}{\hat{N}_{M,\ \pi}}\hat{t}_{My,\ \pi} + \frac{N_F}{\hat{N}_{F,\ \pi}}\hat{t}_{Fy,\ \pi},
+$$
+where
+\begin{align}
+\hat{N}_{M,\ \pi}&=\sum_{k\in M} d_k,\\
+\hat{N}_{F,\ \pi}&=\sum_{k\in F} d_k,\\
+\hat{t}_{My,\ \pi}&=\sum_{k \in M}d_k y_k,\\
+\hat{t}_{Fy,\ \pi}&=\sum_{k \in F}d_k y_k.
+\end{align}
+Notice that here we are talking about the so-called *post-stratified estimator*.
 
 
 
