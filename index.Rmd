@@ -424,63 +424,80 @@ Notice that here we are talking about the so-called *post-stratified estimator*.
 
 # (PART\*) Part II: Practice {-}
 
-# Preliminary concepts and knowledge
+# Sampling design
 
-## Concepts
+## Sample design
 
-## Knowledge about NZ
+When we do sample design for a survey, we must ask the following questions:
 
+1. What is the *target population*?
+2. What are the *objectives* of the survey?
 
+The answer to Question 1 helps us to define the *survey population*, which then helps us to have such a thing called a *frame*. In the frame, we should have the ID's of items/individuals, and we will determine the *selection probability* (AKA *inclusion probability*) for each ID. 
 
-## Sampling design for 2018 TK
+The answers to Question 2 are mostly useful for questionnaire design and also useful for sample design at the evaluation stage. When we do evaluation of a sample design, we will calculate some measures for the so-called *key variables*.
 
-**Target population:** the people who are
+For a complex survey, it is very likely that we do two-stage sampling. 
 
-- NZ usual residents living in private dwellings
-- aged 15 or above
-- Maori (ethnicity or descent)
+- Stage 1: taking a sample of PSU's (Primary Sampling Units, A PSU is a cluster of SSU's---SSU stands for Secondary Sampling Unit.) 
+- Stage 2: taking a sample of SSU's (e.g. an SSU is a household).
 
-**Sampling frame:** it's formed by using the 2018 Census data (i.e. individual table and dwelling table)
+### Design for stage-1 sampling
 
-**Sampling scheme:** stratified two-stage sampling. In **Stage 1**, we take psus---SRS, and in **Stage 2**, we take individuals---SRS (firstly using stratification with age being the stratification variable). For each psu, we can know which *region* it belongs to, if it is *urban* or *rural*, if it has *high*/*low* Maori people, and based on the information we can partition all the psus into 50 strata (NB: this is after some necessary combination is done). 
+Firstly, we must know the sample size, i.e. how many PSU's we will select. Generally speaking, determining sample size is not easy, because we need to make good balance between **cost** and **accuracy**---if we want to have accurate results we should take a large sample but the cost will also go up. Luckily, we often can *borrow* a sample size number from a similar survey, which was conducted before. 
 
+Secondly, we must create a frame, which is a table like the following one
 
-**Sample sizes:** a) how many psus to be taken in each stratum; b) how many individuals to be taken from the selected psus.
+psu_id | var_1 | var_2 | ...
+:-----:|:-----:|:-----:|:----:
+1      | ...   | ...   | ...
+2      | ...   | ...   | ...
+...    | ...   | ...   | ...
+N      | ...   | ...   | ...
 
-**Notation:**
+Note that the variables included in the frame describe the characteristics of the PSU's.
 
-- $N:$ population size (or total number of ssus)
-- $H:$ total number of strata
-- $N_h:$ size of stratum $h$, for $h=1, 2,\ldots, H$
-- $n:$ sample size
-- $n_h:$ sample size of stratum $h$, for $h=1, 2,\ldots, H$
-- $M:$ number of psus
-- $M_h:$ number of psus in stratum $h$, for $h=1, 2,\ldots, H$ 
-- $m_h:$ number of psus to be taken from stratum $h$, for $h=1, 2,\ldots, H$
-- $n_{ih}:$ $n_h$ is split into $n_{1h}$, $n_{2h}$ and $n_3h$ in stage 2, where $i$ indicates age group.
+After the frame is available, next we stratify the PSU's according to the *stratification variables*, which are already created in the frame. The outcome of stratification is a variable called `stratum_code`. For example, in NZ HLFS (Household Labour Force Survey), `stratum_code` has six digits: the first two are for region; the third one is for urban/rural; the fourth one is for high proportion not-in-labour-force; the last two are for NZ deprivation-score groups.
 
-**Step 1:** $n\longrightarrow \{n_1, n_2, \ldots, n_H\}$, for example
+Fourthly, we do sample allocation, i.e. determine how many PSU's to select from each stratum. Sample allocation can be done from the top "layer" (e.g region in NZ HLFS) to the bottom "layer" (e.g. stratum). We must specify the allocation method for each layer.
+
+Lastly, we calculate selection probabilities. The PPS (Probability Proportional Size) method is often used, 
+
+### Design for stage-2 sampling
+
+We start with a frame of SSU's (e.g. an SSU is a household), which is table like
+
+psu_id  | household_id
+:------:|:------------:
+a       | hh_a1
+a       | hh_a2
+a       | hh_a3
+...     | ...
+b       | hh_b1
+b       | hh_b2
+b       | hh_b3
+...     | ...
+
+In the psu_id column of the above frame, these ID's are for the selected PSU's from the stage-1 sampling.
+
+Next, we must consider sample sizes (i.e. number of SSU's to be selected). We distinguish *target sample size*, which is denoted by $n_t$, and *design sample size*, which is denoted by $n_d$. Note that
 $$
-n_h = \text{ceiling}\left(\frac{nN_h}{\sum_{h=1}^H N_h}\right).
+n_d > n_t,
+$$
+because there will be nonresponse (for whatever reasons). We often talk about ASR, the Achieved Sample Rate; the formula is
+$$
+ASR = \frac{\hbox{effective sample size}}{\hbox{design/real sample size}}.
 $$
 
-**Step 2:** find $m_h$, for example
-$$
-m_h = \text{ceiling}\left(\frac{n_h}{\frac{N_h}{M_h}}\right).
-$$
-Note that $\frac{N_h}{M_h}$ is average size of psus in stratum $h$.
+If we will take a *systematic sample*, then we need to create *panels*. The key thing for paneling is to order the SSU's in each PSU; and the SSU's in each PSU will be put in a panel based on their order numbers.
 
-**Step 3:** $n_h\longrightarrow \{n_{1h}, n_{2h}, n_{3h}\}$, for example
-$$
-n_{ih} = n_h\times f_i,
-$$
-where $f_i$ is *sampling fraction* for age group $i$ (e.g. $f_1=f_2=0.35,\ f_3=0.3$.)
+## How to take a sample
+
+# Weighting process
+
+# Calculating sampling errors
 
 
-
-
-
-# Software
 
 # References {-}
 

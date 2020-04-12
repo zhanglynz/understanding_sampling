@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="preliminary-concepts-and-knowledge.html">
-<link rel="next" href="references.html">
+<link rel="prev" href="sampling-error.html">
+<link rel="next" href="weighting-process.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -115,12 +115,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4" data-path="sampling-error.html"><a href="sampling-error.html"><i class="fa fa-check"></i><b>4</b> Sampling error</a></li>
 <li class="part"><span><b>Part II: Practice</b></span></li>
-<li class="chapter" data-level="5" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html"><i class="fa fa-check"></i><b>5</b> Preliminary concepts and knowledge</a><ul>
-<li class="chapter" data-level="5.1" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#concepts"><i class="fa fa-check"></i><b>5.1</b> Concepts</a></li>
-<li class="chapter" data-level="5.2" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#knowledge-about-nz"><i class="fa fa-check"></i><b>5.2</b> Knowledge about NZ</a></li>
-<li class="chapter" data-level="5.3" data-path="preliminary-concepts-and-knowledge.html"><a href="preliminary-concepts-and-knowledge.html#sampling-design-for-2018-tk"><i class="fa fa-check"></i><b>5.3</b> Sampling design for 2018 TK</a></li>
+<li class="chapter" data-level="5" data-path="sampling-design-1.html"><a href="sampling-design-1.html"><i class="fa fa-check"></i><b>5</b> Sampling design</a><ul>
+<li class="chapter" data-level="5.1" data-path="sampling-design-1.html"><a href="sampling-design-1.html#sample-design"><i class="fa fa-check"></i><b>5.1</b> Sample design</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="sampling-design-1.html"><a href="sampling-design-1.html#design-for-stage-1-sampling"><i class="fa fa-check"></i><b>5.1.1</b> Design for stage-1 sampling</a></li>
+<li class="chapter" data-level="5.1.2" data-path="sampling-design-1.html"><a href="sampling-design-1.html#design-for-stage-2-sampling"><i class="fa fa-check"></i><b>5.1.2</b> Design for stage-2 sampling</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="software.html"><a href="software.html"><i class="fa fa-check"></i><b>6</b> Software</a></li>
+<li class="chapter" data-level="5.2" data-path="sampling-design-1.html"><a href="sampling-design-1.html#how-to-take-a-sample"><i class="fa fa-check"></i><b>5.2</b> How to take a sample</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="weighting-process.html"><a href="weighting-process.html"><i class="fa fa-check"></i><b>6</b> Weighting process</a></li>
+<li class="chapter" data-level="7" data-path="calculating-sampling-errors.html"><a href="calculating-sampling-errors.html"><i class="fa fa-check"></i><b>7</b> Calculating sampling errors</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -139,16 +142,132 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="software" class="section level1">
-<h1><span class="header-section-number">6</span> Software</h1>
+<div id="sampling-design-1" class="section level1">
+<h1><span class="header-section-number">5</span> Sampling design</h1>
+<div id="sample-design" class="section level2">
+<h2><span class="header-section-number">5.1</span> Sample design</h2>
+<p>When we do sample design for a survey, we must ask the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>What is the <em>target population</em>?</li>
+<li>What are the <em>objectives</em> of the survey?</li>
+</ol>
+<p>The answer to Question 1 helps us to define the <em>survey population</em>, which then helps us to have such a thing called a <em>frame</em>. In the frame, we should have the ID’s of items/individuals, and we will determine the <em>selection probability</em> (AKA <em>inclusion probability</em>) for each ID.</p>
+<p>The answers to Question 2 are mostly useful for questionnaire design and also useful for sample design at the evaluation stage. When we do evaluation of a sample design, we will calculate some measures for the so-called <em>key variables</em>.</p>
+<p>For a complex survey, it is very likely that we do two-stage sampling.</p>
+<ul>
+<li>Stage 1: taking a sample of PSU’s (Primary Sampling Units, A PSU is a cluster of SSU’s—SSU stands for Secondary Sampling Unit.)</li>
+<li>Stage 2: taking a sample of SSU’s (e.g. an SSU is a household).</li>
+</ul>
+<div id="design-for-stage-1-sampling" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Design for stage-1 sampling</h3>
+<p>Firstly, we must know the sample size, i.e. how many PSU’s we will select. Generally speaking, determining sample size is not easy, because we need to make good balance between <strong>cost</strong> and <strong>accuracy</strong>—if we want to have accurate results we should take a large sample but the cost will also go up. Luckily, we often can <em>borrow</em> a sample size number from a similar survey, which was conducted before.</p>
+<p>Secondly, we must create a frame, which is a table like the following one</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">psu_id</th>
+<th align="center">var_1</th>
+<th align="center">var_2</th>
+<th align="center">…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="even">
+<td align="center">N</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+</tbody>
+</table>
+<p>Note that the variables included in the frame describe the characteristics of the PSU’s.</p>
+<p>After the frame is available, next we stratify the PSU’s according to the <em>stratification variables</em>, which are already created in the frame. The outcome of stratification is a variable called <code>stratum_code</code>. For example, in NZ HLFS (Household Labour Force Survey), <code>stratum_code</code> has six digits: the first two are for region; the third one is for urban/rural; the fourth one is for high proportion not-in-labour-force; the last two are for NZ deprivation-score groups.</p>
+<p>Fourthly, we do sample allocation, i.e. determine how many PSU’s to select from each stratum. Sample allocation can be done from the top “layer” (e.g region in NZ HLFS) to the bottom “layer” (e.g. stratum). We must specify the allocation method for each layer.</p>
+<p>Lastly, we calculate selection probabilities. The PPS (Probability Proportional Size) method is often used,</p>
+</div>
+<div id="design-for-stage-2-sampling" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Design for stage-2 sampling</h3>
+<p>We start with a frame of SSU’s (e.g. an SSU is a household), which is table like</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">psu_id</th>
+<th align="center">household_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">a</td>
+<td align="center">hh_a1</td>
+</tr>
+<tr class="even">
+<td align="center">a</td>
+<td align="center">hh_a2</td>
+</tr>
+<tr class="odd">
+<td align="center">a</td>
+<td align="center">hh_a3</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">b</td>
+<td align="center">hh_b1</td>
+</tr>
+<tr class="even">
+<td align="center">b</td>
+<td align="center">hh_b2</td>
+</tr>
+<tr class="odd">
+<td align="center">b</td>
+<td align="center">hh_b3</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+</tbody>
+</table>
+<p>In the psu_id column of the above frame, these ID’s are for the selected PSU’s from the stage-1 sampling.</p>
+<p>Next, we must consider sample sizes (i.e. number of SSU’s to be selected). We distinguish <em>target sample size</em>, which is denoted by <span class="math inline">\(n_t\)</span>, and <em>design sample size</em>, which is denoted by <span class="math inline">\(n_d\)</span>. Note that <span class="math display">\[
+n_d &gt; n_t,
+\]</span> because there will be nonresponse (for whatever reasons). We often talk about ASR, the Achieved Sample Rate; the formula is <span class="math display">\[
+ASR = \frac{\hbox{effective sample size}}{\hbox{design/real sample size}}.
+\]</span></p>
+<p>If we will take a <em>systematic sample</em>, then we need to create <em>panels</em>. The key thing for paneling is to order the SSU’s in each PSU; and the SSU’s in each PSU will be put in a panel based on their order numbers.</p>
+</div>
+</div>
+<div id="how-to-take-a-sample" class="section level2">
+<h2><span class="header-section-number">5.2</span> How to take a sample</h2>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="preliminary-concepts-and-knowledge.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sampling-error.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="weighting-process.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
