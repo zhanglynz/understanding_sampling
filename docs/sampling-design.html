@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2020-04-12">
+<meta name="date" content="2020-12-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -124,6 +124,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="weighting-process.html"><a href="weighting-process.html"><i class="fa fa-check"></i><b>6</b> Weighting process</a></li>
 <li class="chapter" data-level="7" data-path="calculating-sampling-errors.html"><a href="calculating-sampling-errors.html"><i class="fa fa-check"></i><b>7</b> Calculating sampling errors</a></li>
+<li class="part"><span><b>Part III: Appendices</b></span></li>
+<li class="chapter" data-level="" data-path="pps-action-r-program.html"><a href="pps-action-r-program.html"><i class="fa fa-check"></i>PPS action R program</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -202,16 +204,23 @@ Under PPS, the selection probability of item/individual <span class="math inline
 \tag{2.1}
 \end{equation}\]</span>
 <p>where <span class="math inline">\(n\)</span> and <span class="math inline">\(N\)</span> are the sample size and population size, respectively, <span class="math inline">\(Z_i\)</span> is the <em>size/importance</em> of item/individual <span class="math inline">\(i\)</span>.</p>
-It is easy to see from <a href="sampling-design.html#eq:pi">(2.1)</a> that
+<p><strong>Remarks:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>If some of <span class="math inline">\(\pi_i\)</span> resulted from <a href="sampling-design.html#eq:pi">(2.1)</a> are greater than 1, then we set them as 1, and recalculate the rest <span class="math inline">\(\pi_i\)</span>’s. The iteration process finishes until no <span class="math inline">\(\pi\)</span>’s are greater than 1. See <em>PPS action R program</em> in the Appendix part.</p></li>
+<li>It is easy to see from <a href="sampling-design.html#eq:pi">(2.1)</a> that
 <span class="math display" id="eq:pisum">\[\begin{equation}
 \sum_{i=1}^N \pi_i = n.
 \tag{2.2}
 \end{equation}\]</span>
-<p>Actually, <a href="sampling-design.html#eq:pisum">(2.2)</a> is always hold if the sample size is fixed as <span class="math inline">\(n\)</span>; below is a quick proof.</p>
-<p><strong>Proof:</strong> <span class="math display">\[
-\sum_{i=1}^N \pi_i= \frac{N\binom{N-1}{n-1}}{\binom{N}{n}}\times 1
-=n.
-\]</span></p>
+<p>Actually, <a href="sampling-design.html#eq:pisum">(2.2)</a> is always hold if the sample size is fixed as <span class="math inline">\(n\)</span>; below is a quick proof.</p></li>
+</ol>
+<strong>Proof:</strong>
+<span class="math display">\[\begin{align}
+\sum_{i=1}^N \pi_i &amp;= \sum_{i=1}^N\sum_{i\in S}p(S) \notag\\
+&amp;= \frac{N\binom{N-1}{n-1}}{\binom{N}{n}}\sum_{S\in \Omega}p(S) \notag\\
+&amp;= n\times 1 \notag\\
+&amp;= n \notag
+\end{align}\]</span>
 </div>
 <div id="three-theoretical-principles" class="section level2">
 <h2><span class="header-section-number">2.3</span> Three theoretical principles</h2>

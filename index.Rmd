@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Preface {-}
 
-How do you learn, or to be exact, how do you learn complex stuff? I guess that many different answers will come out, because we are all different in many aspects, such as culture background, knowledge level, and learning style etc. etc.. For myself, if I want to seriously learn some complex stuff, then I will write about it. Without doubts, *Sampling* is complex, and it is kind of boring, but it is important (for me, because I need it for my work, and for you the reasons must be different). So, I have to learn and re-learn sampling, and now I am writing about it.
+How do you learn, or to be exact, how do you learn complex stuff? I guess that many different answers will come out, because we are all different in many aspects, such as culture background, knowledge level, and learning style etc. etc.. For myself, if I want to seriously learn some complex stuff, then I will write about it. Without doubts, *Sampling* (or to be exact, *survey sampling*) is complex, and it is kind of boring, but it is important (for me, because I need it for my work, and for you the reasons must be different). So, I have to learn and re-learn sampling, and now I am writing about it.
 
 Since I live and work in New Zealand, I will use contexts and examples at there. Chapter 1 introduces preliminary concepts, such as *population*, *target population*, *survey populaton*, *simple random sample*, *stratified sample*, *cluster sample*, and *systematic sample*. Chapter 1 also presents some knowledge about New Zealand. Chapter 2 is about *sampling design*; Chapter 3 is about *weighting system*; Chapter 4 covers how to estimate *sampling errors*. Chapter 5 briefly introduces software for sampling.
 
@@ -33,7 +33,7 @@ Since I live and work in New Zealand, I will use contexts and examples at there.
 
 The population shown in the above table has size $N$, and we are interested in the $m$ **unknown** variables, $Y_1\, Y_2,\ \ldots,\ Y_m$. A part/portion of the above table is a sample. We make efforts to use the **known** sample (i.e. collected data) to get insights into the whole population---this is serious business. 
 
-Sampling is challenging, because not only must we deal with mathematics but also we must cope with many practical issues, such as defining population, reducing cost (as much as we can), and non-response etc. etc.. Part I of this book is about theory, and Part II focuses on practical matters in sampling.
+Sampling is challenging, because not only must we deal with mathematics but also we must cope with many practical issues, such as defining population, reducing cost (as much as we can), and non-response etc. etc.. Part I of this book is about theory; Part II focuses on practical matters in sampling; Part III contains appendices.
 
 # (PART\*) Part I: Theory {-}
 
@@ -194,7 +194,11 @@ Under PPS, the selection probability of item/individual $i$ is defined as
 \end{equation}
 where $n$ and $N$ are the sample size and population size, respectively, $Z_i$ is the *size/importance* of item/individual $i$.
 
-It is easy to see from \@ref(eq:pi) that
+**Remarks:**
+
+1. If some of $\pi_i$ resulted from \@ref(eq:pi) are greater than 1, then we set them as 1, and recalculate the rest $\pi_i$'s. The iteration process finishes until no $\pi$'s are greater than 1. See *PPS action R program* in the Appendix part. 
+
+2. It is easy to see from \@ref(eq:pi) that
 \begin{equation}
 \sum_{i=1}^N \pi_i = n.
 (\#eq:pisum)
@@ -202,10 +206,12 @@ It is easy to see from \@ref(eq:pi) that
 Actually, \@ref(eq:pisum) is always hold if the sample size is fixed as $n$; below is a quick proof.
 
 **Proof:** 
-$$
-\sum_{i=1}^N \pi_i= \frac{N\binom{N-1}{n-1}}{\binom{N}{n}}\times 1
-=n.
-$$
+\begin{align}
+\sum_{i=1}^N \pi_i &= \sum_{i=1}^N\sum_{i\in S}p(S) \notag\\
+&= \frac{N\binom{N-1}{n-1}}{\binom{N}{n}}\sum_{S\in \Omega}p(S) \notag\\
+&= n\times 1 \notag\\
+&= n \notag
+\end{align}
 
 ## Three theoretical principles
 
@@ -497,6 +503,26 @@ If we will take a *systematic sample*, then we need to create *panels*. The key 
 
 # Calculating sampling errors
 
+# (PART\*) Part III: Appendices {-}
+
+# PPS action R program {-}
+
+```{r, eval=FALSE}
+pps_action <- function(size_vec, the_n)
+{the_re <- the_n * (size_vec / sum(size_vec))
+ the_n_fixed <- the_n
+ while(1) {
+   bad_ones_index <- which(the_re > 1)
+   good_ones_index <- which(the_re < 1)
+   if(!length(bad_ones_index)) return(the_re)
+   the_re[bad_ones_index] <- 1
+   m <- sum(the_re == 1)
+   the_n <- the_n_fixed - m
+   the_re[good_ones_index] <-
+     the_n * (size_vec[good_ones_index] / sum(size_vec[good_ones_index]))
+ }
+}
+```
 
 
 # References {-}

@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="pps-action-r-program.html">
-
+<link rel="prev" href="calculating-sampling-errors.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -144,19 +144,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-<p><strong>Haziza, D. and Beaumont, J.</strong> (2017). Construction of Weights in Surveys: A Review. <em>Statistical Science</em>, Vol. 32, pp. 206-226.</p>
-<p><strong>Tillé, Y. and Wilhelm, M.</strong> (2017). Probability Sampling Design: Principles for Choice of Design and Balancing. <em>Statistical Science</em>, Vol. 32, pp. 176-189.</p>
-
+<div id="pps-action-r-program" class="section level1 unnumbered">
+<h1>PPS action R program</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pps_action &lt;-<span class="st"> </span><span class="cf">function</span>(size_vec, the_n)
+{the_re &lt;-<span class="st"> </span>the_n <span class="op">*</span><span class="st"> </span>(size_vec <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(size_vec))
+ the_n_fixed &lt;-<span class="st"> </span>the_n
+ <span class="cf">while</span>(<span class="dv">1</span>) {
+   bad_ones_index &lt;-<span class="st"> </span><span class="kw">which</span>(the_re <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)
+   good_ones_index &lt;-<span class="st"> </span><span class="kw">which</span>(the_re <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>)
+   <span class="cf">if</span>(<span class="op">!</span><span class="kw">length</span>(bad_ones_index)) <span class="kw">return</span>(the_re)
+   the_re[bad_ones_index] &lt;-<span class="st"> </span><span class="dv">1</span>
+   m &lt;-<span class="st"> </span><span class="kw">sum</span>(the_re <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
+   the_n &lt;-<span class="st"> </span>the_n_fixed <span class="op">-</span><span class="st"> </span>m
+   the_re[good_ones_index] &lt;-
+<span class="st">     </span>the_n <span class="op">*</span><span class="st"> </span>(size_vec[good_ones_index] <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(size_vec[good_ones_index]))
+ }
+}</code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="pps-action-r-program.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="calculating-sampling-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
